@@ -1,0 +1,30 @@
+package baekjoon;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		int n;
+		int[] intArray = new int[30];
+		
+		Scanner scanner = new Scanner(System.in);
+		
+			for(int i = 0; i < 28; i++) {
+				do {
+					n = scanner.nextInt();
+				}while(n < 1 || n > 30);
+				
+				intArray[n - 1] = 1;
+				
+			}
+			for(int i = 0; i < 30; i++) {
+				if(intArray[i]==0) {
+					System.out.println(i + 1);
+				}
+			}
+		scanner.close();
+		
+	}
+
+}
