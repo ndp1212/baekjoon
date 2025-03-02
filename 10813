@@ -1,0 +1,36 @@
+package baekjoon;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		int a, b, c;
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		int N = scanner.nextInt();
+		int M = scanner.nextInt();
+		
+		int [] intArray = new int[N];
+		
+		for(int i = 0; i < N; i++) {
+			intArray[i] = i + 1; 
+		}
+
+		for(int j = 0; j < M; j++) {
+			a = scanner.nextInt();
+			b = scanner.nextInt();
+			
+			c = intArray[a - 1];
+			intArray[a - 1] = intArray[b - 1];
+			intArray[b - 1] = c;
+			
+		}
+		for(int i = 0; i < N; i++) {
+			System.out.print(intArray[i] + " ");
+		}
+		
+	}
+
+}
