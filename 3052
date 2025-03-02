@@ -1,0 +1,43 @@
+package baekjoon;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        int a, count = 0;
+        int[] intArray = new int[10];
+
+        for(int i = 0; i < 10; i++) {
+            while (true) {
+                a = scanner.nextInt();
+                
+                if (a < 0 || a > 1000) {
+                    System.out.println("0 ~ 1000 사이 값 입력.");
+                    continue; 
+                }
+                break; 
+            }
+
+            int b = a % 42; 
+
+            boolean isDuplicate = false;
+            for(int j = 0; j < count; j++) {
+                if(intArray[j] == b) {
+                    isDuplicate = true;
+                    break; 
+                }
+            }
+            
+            if (!isDuplicate) {
+                intArray[count] = b;
+                count++; 
+            }
+        }
+
+        scanner.close();
+
+        System.out.println(count);
+    }
+}
