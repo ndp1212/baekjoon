@@ -1,0 +1,35 @@
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int N = scanner.nextInt();
+        
+        int score = 0, temp = 0;
+        double sum = 0;
+        
+        int[] intArray = new int[N];
+        
+        for(int i = 0; i < N; i++) {
+        	
+        	do {
+        		 score = scanner.nextInt();
+        	}while(score > 1000);
+        	
+        	intArray[i] = score;
+        	if(score > temp) temp = score;
+        }
+        for(int j = 0; j < N; j++) {
+
+        	sum = sum + ((double)intArray[j] / temp) * 100 ;
+        }
+        
+        System.out.print(sum / N);
+  
+
+        scanner.close();
+    }
+}
