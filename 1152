@@ -1,3 +1,4 @@
+//method 1 (문자열 순회하며 공백으로 단어 구분)
 package baekjoon;
 
 import java.util.Scanner;
@@ -25,6 +26,32 @@ public class Main {
         	
         }
        
+        System.out.println(count); 
+       
+    }
+}
+
+
+//method 2 (sprit으로 저장 후 빈 문자열을 제외한 개수 count)
+
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        String[] str = scanner.nextLine().split(" ");
+        
+        int count = 0;
+  
+        for(int i = 0; i < str.length; i++) {
+        	if(!str[i].equals("")) {
+        		count++; 
+        	}
+        }
+        
         System.out.println(count); 
        
     }
