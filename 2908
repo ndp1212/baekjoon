@@ -1,0 +1,40 @@
+//https://www.acmicpc.net/problem/2908
+
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+	
+	public static String rev(String str) {
+		
+		char[] temp = new char[str.length()];
+		
+		for(int i = 0; i < str.length(); i++) {
+	
+			temp[i] = str.charAt((str.length() - 1) - i);
+			
+		}
+	
+		return new String(temp);
+		
+	}
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+     
+        String first, second;
+        int rev1, rev2;
+        
+        first = scanner.next();
+        second = scanner.next();
+        
+        rev1 = Integer.parseInt(rev(first));
+        rev2 = Integer.parseInt(rev(second));
+        
+        System.out.print(rev1 > rev2 ? rev1 : rev2);
+        	
+         
+    }
+
+}
