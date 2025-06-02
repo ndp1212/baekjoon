@@ -1,0 +1,35 @@
+//url : https://www.acmicpc.net/problem/10988
+package baekjoon;
+
+import java.util.Scanner;
+
+
+public class Main {
+	
+    public static void main(String[] args) {
+    
+    	Scanner scanner = new Scanner(System.in);    	
+    	String temp =  scanner.nextLine();
+    	
+    	boolean isCorrect = true;
+    	
+    	char[] temp1 = temp.toCharArray();
+    	char[] temp2 = new char[temp.length()];
+    	
+    	for(int i = 0; i < temp.length(); i++) {
+    		temp2[i] = temp1[temp.length() - i - 1];
+    	}
+    	
+    	for(int i = 0; i < temp.length(); i++) {
+    		if(temp1[i] != temp2[i]) {
+    			isCorrect = false;
+    			break;
+    		}
+    	}
+    	
+    	
+    	System.out.print(isCorrect ? 1 : 0);
+    	
+    }
+
+}
