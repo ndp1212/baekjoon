@@ -1,0 +1,38 @@
+//url : https://www.acmicpc.net/problem/2444
+
+package baekjoon;
+
+import java.util.Scanner;
+
+
+public class Main {
+	
+    public static void main(String[] args) {
+    
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	int input = scanner.nextInt();
+    	
+    	for(int i = 1; i <= input; i++) {
+    		for(int j = 0; j < (input - i); j++) {
+    			System.out.print(" ");
+    		}
+    		for(int j = 0; j < (2*i)-1; j++) {
+    			
+    			System.out.print("*");
+    		}
+    		System.out.println("");
+    	}
+    	for(int i = (input -  1); i > 0; i--) {
+    		for(int j = i; j < input; j++) {
+    			System.out.print(" ");
+    		}
+    		for(int j = 0; j < (2*i)-1; j++) {
+    			
+    			System.out.print("*");
+    		}
+    		System.out.println("");
+    	}
+    }
+
+}
