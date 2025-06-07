@@ -1,0 +1,34 @@
+//url : https://www.acmicpc.net/problem/1157
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+    	
+        Scanner scanner = new Scanner(System.in);
+        String word = scanner.nextLine().toUpperCase();
+        
+        int max = 0;
+        char result = ' ';
+        int[] count = new int[26];
+
+        char[] arr = word.toCharArray(); 
+
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];              
+            int index = c - 'A';          
+            count[index]++;               
+        }
+   
+       
+        for (int i = 0; i < 26; i++) {
+            if (count[i] > max) {
+                max = count[i];
+                result = (char) (i + 'A');
+            } else if (count[i] == max) {
+                result = '?';
+            }
+        }
+
+        System.out.println(result);
+    }
+}
