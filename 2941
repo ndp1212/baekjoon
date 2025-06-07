@@ -1,0 +1,32 @@
+//url : https://www.acmicpc.net/problem/2941
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String word = scanner.nextLine();
+        int count = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (i < word.length() - 2 && word.substring(i, i + 3).equals("dz=")) {
+                count++;
+                i += 2; 
+            } else if (i < word.length() - 1) {
+                String temp = word.substring(i, i + 2);
+                if (temp.equals("c=") || temp.equals("c-") || temp.equals("d-") || temp.equals("lj") || temp.equals("nj") || temp.equals("s=") || temp.equals("z=")) 
+                {
+                    count++;
+                    i++; 
+                } else {
+                    count++; 
+                }
+            } else {
+                count++; 
+            }
+        }
+
+        System.out.println(count);
+    }
+}
