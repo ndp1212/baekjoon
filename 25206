@@ -1,0 +1,59 @@
+//url : https://www.acmicpc.net/problem/25206
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        float totalScore = 0.0f;
+        float totalCredit = 0.0f;
+
+        for (int i = 0; i < 20; i++) {
+        	
+            String subject = scanner.next();       
+            float credit = scanner.nextFloat();  
+            String grade = scanner.next();         
+            float Point = 0.0f;
+            
+            if (grade.equals("P")) continue;
+            
+            switch (grade) {
+                case "A+":
+                    Point = 4.5f;              
+                    break;
+                case "A0":
+                    Point = 4.0f;
+                    break;
+                case "B+":
+                    Point = 3.5f;
+                    break;
+                case "B0":
+                    Point = 3.0f;
+                    break;
+                case "C+":
+                    Point = 2.5f;
+                    break;
+                case "C0":
+                    Point = 2.0f;
+                    break;
+                case "D+":
+                    Point = 1.5f;
+                    break;
+                case "D0":
+                    Point = 1.0f;
+                    break;
+                case "F":
+                    Point = 0.0f;
+                    break;
+            }
+
+            totalScore += Point * credit;
+            totalCredit += credit;
+        }
+
+        float result = totalScore / totalCredit;
+        System.out.printf("%.6f\n", result);
+    }
+}
