@@ -1,0 +1,32 @@
+//url : https://www.acmicpc.net/problem/10798
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char temp[][] = new char[5][15];
+        int maxLen = 0;
+        
+        for(int i = 0; i < 5; i++) {
+        	String str = scanner.next();
+        	
+        	if(maxLen < str.length()) {
+        		maxLen = str.length();
+        	}
+        	
+        	for(int j = 0; j < str.length(); j++) {
+        		temp[i][j] = str.charAt(j);
+        	}
+        }
+        
+        for(int i = 0; i < maxLen; i++) {
+        	for(int j = 0; j < 5; j++) {
+        		if(temp[j][i] != '\0')
+        			System.out.print(temp[j][i]);
+        	}
+        }
+        
+    }       
+}
