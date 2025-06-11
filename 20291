@@ -1,0 +1,32 @@
+// https://www.acmicpc.net/problem/20291
+package baekjoon;
+
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int N = Integer.parseInt(scanner.nextLine());
+        String temp;
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        
+        for(int i = 0; i < N; i++) {
+        	String file_name = scanner.nextLine();
+        	temp = file_name.substring(file_name.lastIndexOf('.')+1);
+        	map.put(temp, map.getOrDefault(temp, 0) + 1);
+        }
+        
+        String[] temp2 = map.keySet().toArray(new String[0]);
+        Arrays.sort(temp2);
+        
+        
+        for(String result : temp2) {
+        	System.out.println(result + " " + map.get(result));
+        }
+    }       
+}
