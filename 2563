@@ -1,0 +1,33 @@
+//url : https://www.acmicpc.net/problem/2563
+package baekjoon;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int temp[][] = new int[100][100];
+        int input = scanner.nextInt();
+        int extent = 0;
+        
+        for(int i = 0; i < input; i++) {
+        	int width = scanner.nextInt();
+        	int height = scanner.nextInt();
+        	
+        	for(int j = width; j < (width + 10); j++) {
+        		for(int k = height; k < (height + 10); k++) {
+        			temp[j][k] = 1;
+        		}
+        	}
+        }
+        
+        for(int i = 0; i < 100; i++) {
+        	for(int j = 0; j < 100; j++) {
+        		if(temp[i][j] == 1)
+        			extent += 1;
+        	}
+        }
+        
+        System.out.print(extent);
+    }       
+}
