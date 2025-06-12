@@ -1,0 +1,42 @@
+// https://www.acmicpc.net/problem/1522
+package baekjoon;
+
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Arrays;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int total_a = 0, count_a = 0, max_a = 0;
+        
+        String input = scanner.nextLine();
+        int leng = input.length();
+        
+        for(int i = 0; i < leng; i++) {
+        	if(input.charAt(i) == 'a')
+        		total_a += 1;
+        }
+        
+        for(int i = 0; i < total_a; i++) {
+        	if(input.charAt(i)=='a')
+        		count_a += 1;
+        }
+        
+        max_a = count_a;
+        
+        for(int i = 0; i < leng; i++) {
+        	int out_index = i % leng;
+        	int new_index = (i + total_a) % leng;
+        	
+        	if(input.charAt(out_index) == 'a')
+        		count_a--;
+        	if(input.charAt(new_index) == 'a')
+        		count_a++;
+        	
+        	max_a = Math.max(max_a, count_a);
+        }
+        System.out.print(total_a - max_a);
+    }       
+}
