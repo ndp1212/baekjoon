@@ -1,0 +1,65 @@
+// https://www.acmicpc.net/problem/9017 (오작동으로 수정중)
+package baekjoon;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt(); 
+
+        for (int t = 0; t < T; t++) {
+            int N = sc.nextInt(); 
+            int[] arr = new int[N];
+
+            for (int i = 0; i < N; i++) {
+                arr[i] = sc.nextInt();
+            }
+
+            HashMap<Integer, Integer> countNum = new HashMap<>();
+            for (int i = 0; i < N; i++) {
+                int team = arr[i];
+                countNum.put(team, countNum.getOrDefault(team, 0) + 1);
+            }
+
+
+            HashMap<Integer, int[]> teamScore = new HashMap<>();
+            HashMap<Integer, Integer> scoreIndex = new HashMap<>();
+
+            for (int i = 0; i < N; i++) {
+                int team = arr[i];
+
+                if (countNum.get(team) < 6) continue;
+                
+                if (!teamScore.containsKey(team)) {
+                    teamScore.put(team, new int[6]);
+                    scoreIndex.put(team, 0);
+                }
+
+                int idx = scoreIndex.get(team);
+                if (idx < 6) {
+                    teamScore.get(team)[idx] = i + 1;
+                    scoreIndex.put(team, idx + 1);
+                }
+            }
+
+            int winner = 0;
+            int bestScore = Integer.MAX_VALUE;
+            int temp3 = Integer.MAX_VALUE;
+
+            for (int team : teamScore.keySet()) {
+                int[] scores = teamScore.get(team);
+                int sum = scores[0] + scores[1] + scores[2] + scores[3];
+                int fifth = scores[4];
+
+                if (sum < bestScore || (sum == bestScore && fifth < temp3)) {
+                    bestScore = sum;
+                    temp3 = fifth;
+                    winner = team;
+                }
+            }
+
+            System.out.println(winner);
+        }
+    }
+}
