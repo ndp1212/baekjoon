@@ -1,0 +1,42 @@
+// https://www.acmicpc.net/problem/2179
+package baekjoon;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String[] words = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            words[i] = sc.next();
+        }
+
+        int maxLen = -1;
+        int a = 0, b = 1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int len = commonPrefix(words[i], words[j]);
+                if (len > maxLen ||
+                    (len == maxLen && (i < a || (i == a && j < b)))) {
+                    maxLen = len;
+                    a = i;
+                    b = j;
+                }
+            }
+        }
+
+        System.out.println(words[a]);
+        System.out.println(words[b]);
+    }
+
+    static int commonPrefix(String a, String b) {
+        int len = Math.min(a.length(), b.length());
+        for (int i = 0; i < len; i++) {
+            if (a.charAt(i) != b.charAt(i)) return i;
+        }
+        return len;
+    }
+}
