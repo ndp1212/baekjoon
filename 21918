@@ -1,0 +1,58 @@
+// https://www.acmicpc.net/problem/21918
+package baekjoon;
+
+import java.util.*;
+
+public class Main {
+    static int[] arr;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int N = scanner.nextInt(); 
+        int M = scanner.nextInt(); 
+
+        arr = new int[N + 1];
+
+        for (int i = 1; i <= N; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        for (int m = 0; m < M; m++) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int c = scanner.nextInt();
+
+            if (a == 1) func1(b, c);
+            else if (a == 2) func2(b, c);
+            else if (a == 3) func3(b, c);
+            else if (a == 4) func4(b, c);
+        }
+
+        for (int i = 1; i <= N; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void func1(int i, int x) {
+        arr[i] = x;
+    }
+
+    public static void func2(int l, int r) {
+        for (int i = l; i <= r; i++) {
+            arr[i] = 1 - arr[i];
+        }
+    }
+
+    public static void func3(int l, int r) {
+        for (int i = l; i <= r; i++) {
+            arr[i] = 0;
+        }
+    }
+
+    public static void func4(int l, int r) {
+        for (int i = l; i <= r; i++) {
+            arr[i] = 1;
+        }
+    }
+}
