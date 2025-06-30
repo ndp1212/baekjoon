@@ -1,0 +1,58 @@
+//https://www.acmicpc.net/problem/20546
+package baekjoon;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int money = sc.nextInt();
+        int[] prices = new int[14];
+        
+        for (int i = 0; i < 14; i++) {
+            prices[i] = sc.nextInt();
+        }
+        
+        int bnpResult = BNP(money, prices);
+        int timingResult = Timing(money, prices);
+        
+        if (bnpResult > timingResult) {
+            System.out.println("BNP");
+        } else if (timingResult > bnpResult) {
+            System.out.println("TIMING");
+        } else {
+            System.out.println("SAMESAME");
+        }
+    }
+    
+    public static int BNP(int money, int[] prices) {
+        int stock = 0;
+        for (int i = 0; i < 14; i++) {
+            if (money >= prices[i]) {
+                stock += money / prices[i];
+                money %= prices[i];
+            }
+        }
+        return money + stock * prices[13];
+    }
+    
+    public static int Timing(int money, int[] prices) {
+        int stock = 0;
+        for (int i = 0; i < 14; i++) {
+            if (i >= 3 && stock > 0) {
+                if (prices[i-3] < prices[i-2] && prices[i-2] < prices[i-1] && prices[i-1] < prices[i]) {
+                    money += stock * prices[i];
+                    stock = 0;
+                }
+            }
+            
+            if (i >= 3 && money >= prices[i]) {
+                if (prices[i-3] > prices[i-2] && prices[i-2] > prices[i-1] && prices[i-1] > prices[i]) {
+                    stock += money / prices[i];
+                    money %= prices[i];
+                }
+            }
+        }
+        return money + stock * prices[13];
+    }
+}
