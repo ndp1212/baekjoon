@@ -1,0 +1,72 @@
+//https://www.acmicpc.net/problem/2852
+package baekjoon;
+
+import java.text.DecimalFormat;
+import java.util.*;
+
+public class Main {
+  static int toSec(String time) {
+	  String[] temp = time.split(":");
+	  
+	  int minute = Integer.parseInt(temp[0]);
+	  int second = Integer.parseInt(temp[1]);
+	  
+	  return (minute * 60) + second; 
+  }
+  
+  static String formatting(int total) {
+	  DecimalFormat df = new DecimalFormat("00");
+	  
+	  int minute = total / 60;
+	  int second = total % 60;
+	  
+	  return df.format(minute) + ":" + df.format(second);
+  }
+  
+  public static void main(String[] args) {
+	  Scanner scanner = new Scanner(System.in);
+	  List<int[]> records = new ArrayList<>();
+	  int N = scanner.nextInt();
+	  int score1 = 0, score2 = 0;
+	  int winTime1 = 0, winTime2 = 0;
+	  int lastTime = 0;
+	  
+	  for(int i = 0; i < N; i++) {
+		  int teamNo = scanner.nextInt();
+		  String time_record = scanner.next();
+		  int timeToSecond = toSec(time_record);
+		  records.add(new int[] {teamNo, timeToSecond});
+	  }
+	  
+	  for(int[] record : records) {
+		  int teamNo = record[0];
+		  int currentTime = record[1];
+		  
+		  if(score1 > score2) {
+			  winTime1 += currentTime - lastTime;
+		  } else if(score1 < score2) {
+			  winTime2 += currentTime - lastTime;
+		  }
+		  
+		  if(teamNo == 1)
+			  score1++;
+		  else
+			  score2++;
+		  
+		  lastTime = currentTime;
+	  }
+	  
+	  if(score1 > score2) {
+		  winTime1 += 2880 - lastTime;
+	  } else if(score1 < score2) {
+		  winTime2 += 2880 - lastTime;
+	  }
+	  
+	  System.out.println(formatting(winTime1));
+	  System.out.println(formatting(winTime2));
+	  
+	  
+  }
+  
+  
+}
