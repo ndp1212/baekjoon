@@ -1,0 +1,53 @@
+//https://www.acmicpc.net/problem/1913
+package baekjoon;
+
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int N = scanner.nextInt();
+		int targetNum = scanner.nextInt();
+		int x = N / 2;
+		int y = N / 2;
+		int[][] map =  new int[N][N];
+		map[y][x] = 1;
+		
+		int length = 1;
+		int value = 2;
+		int [] dx = {0, 1, 0, -1};
+		int [] dy = {-1, 0, 1, 0};
+		int dir = 0;
+		
+		while(value <= N * N) {
+			for(int i = 0; i < 2; i++) {
+				for(int j = 0; j < length; j++) {
+					x += dx[dir];
+					y += dy[dir];
+					if(x >= 0 && x < N && y >= 0 && y < N) {
+						map[y][x] = value++;
+					}
+				}
+				dir = (dir + 1) % 4;
+			}
+			length++;
+		}
+		
+		int targetCol = 0, targetRow = 0;
+		
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < N; j++) {
+				System.out.print(map[i][j] + " ");
+				
+				if(map[i][j] == targetNum) {
+					targetCol = j + 1;
+					targetRow = i + 1;
+				}
+			}
+			System.out.println();
+		}
+		
+		System.out.println(targetRow + " " + targetCol);
+	}
+  
+}
