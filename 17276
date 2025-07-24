@@ -7,79 +7,56 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        
-        int T = Integer.parseInt(br.readLine());
-        int[][] board;
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int t = Integer.parseInt(br.readLine());
 
-        for (int t = 0; t < T; t++) {
-            String[] setting = br.readLine().split(" ");
-            int n = Integer.parseInt(setting[0]);
-            int rotation = Integer.parseInt(setting[1]);
-            int r = (rotation < 0 ? (rotation + 360) : rotation) / 45;
-            board = new int[n][n];
+        while (t-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int n = Integer.parseInt(st.nextToken());
+            int degree = Integer.parseInt(st.nextToken());
+            
+            if (degree < 0) degree = 360 + degree;
+            degree = (degree % 360) / 45;
 
+            int[][] arr = new int[n][n];
             for (int i = 0; i < n; i++) {
-                String[] input = br.readLine().split(" ");
+                st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < n; j++) {
-                    board[i][j] = Integer.parseInt(input[j]);
+                    arr[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
 
-            for (int i = 0; i < Math.abs(r); i++) {
-                if (rotation > 0)
-                    for_rotate(board);
-                else
-                    rev_rotate(board);
+            while (degree-- > 0) { 
+                rotate(arr);
             }
 
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    sb.append(board[i][j]).append(" ");
+                    bw.write(arr[i][j] + " ");
                 }
-                sb.append("\n");
+                bw.write("\n");
             }
         }
-        System.out.println(sb);
+
+        bw.flush();
+        br.close();
+        bw.close();
     }
 
-    static void for_rotate(int[][] arr) {
+    static void rotate(int[][] arr) {
         int n = arr.length;
+        int mid = n / 2;
         int[] copy = new int[n];
 
         for (int i = 0; i < n; i++) {
-            copy[i] = arr[i][n / 2];
+            copy[i] = arr[i][mid];
         }
 
         for (int i = 0; i < n; i++) {
-            arr[i][n / 2] = arr[i][i];
-            arr[i][i] = arr[n / 2][i];
-            arr[n / 2][i] = arr[n - i - 1][i];
-            arr[n - i - 1][i] = arr[n - i - 1][n / 2];
-            arr[n - i - 1][n / 2] = arr[n - i - 1][n - i - 1];
-            arr[n - i - 1][n - i - 1] = arr[n / 2][n - i - 1];
-            arr[n / 2][n - i - 1] = arr[i][n - i - 1];
-            arr[i][n - i - 1] = copy[i];
-        }
-    }
-
-    static void rev_rotate(int[][] arr) {
-        int n = arr.length;
-        int[] copy = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            copy[i] = arr[i][n / 2];
-        }
-
-        for (int i = 0; i < n; i++) {
-            arr[i][n / 2] = arr[i][n - i - 1];
-            arr[i][n - i - 1] = arr[n / 2][n - i - 1];
-            arr[n / 2][n - i - 1] = arr[n - i - 1][n - i - 1];
-            arr[n - i - 1][n - i - 1] = arr[n - i - 1][n / 2];
-            arr[n - i - 1][n / 2] = arr[n - i - 1][i];
-            arr[n - i - 1][i] = arr[n / 2][i];
-            arr[n / 2][i] = arr[i][i];
-            arr[i][i] = copy[i];
+            arr[i][mid] = arr[i][i];
+            arr[i][i] = arr[mid][i];
+            arr[mid][i] = arr[n - i - 1][i];
+            arr[n - i - 1][i] = copy[n - 1 - i];
         }
     }
 }
